@@ -2,7 +2,7 @@
 http://hmi.8ms.xyz
 
 # 安装依赖
-ubuntu 16.04.7 64位系统
+已验证系统为：ubuntu 16.04.7 64位系统
 
 ````sh
 sudo apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache \
@@ -40,7 +40,21 @@ arm-linux-gnueabihf-gcc --version
 # 编译
 make
 
-# 产物
-可执行文件：bin/demo
-库文件：lib/liblvgl.so
+库文件位于lib/liblvgl.so
+可执行文件位于bin/demo
 
+# 测试
+将demo通过网口上传到板子（tftp或者scp），增加可执行权限，并运行。例如
+
+```
+cd /tmp
+tftp -g 192.168.1.111 -r demo
+chmod +x demo
+./demo
+```
+
+如果板子没有liblvgl.so，可先手动上传。
+```
+cd /usr/lib/
+tftp -g 192.168.1.111 -r liblvgl.so
+```
