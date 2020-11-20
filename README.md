@@ -1,4 +1,4 @@
-# 8ms
+# 8ms-sstar
 http://hmi.8ms.xyz
 
 # 安装依赖
@@ -40,4 +40,7 @@ arm-linux-gnueabihf-gcc --version
 # 编译
 make
 
-：
+# 产物
+可执行文件：bin/demo
+库文件：lib/liblvgl.so
+
