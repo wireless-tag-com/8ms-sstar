@@ -15,10 +15,14 @@ sudo apt-get install zlib1g:i386 libstdc++6:i386 libc6:i386 libc6-dev-i386
 
 # 安装toolchian
 
-1. 解压缩toolchain
+1. 下载toolchain
+链接：https://pan.baidu.com/s/1SUk1a-drbWo1tkHQzCgchg 
+提取码：1o3d 
+
+2.  解压缩toolchain
 
 ```
-sudo tar toolchain/wt-gcc-arm-8.2-2018.08-x86_64-arm-linux-gnueabihf.tag.gz -xvf -C /opt/
+sudo tar wt-gcc-arm-8.2-2018.08-x86_64-arm-linux-gnueabihf.tag.gz -xvf -C /opt/
 ```
 
 2. 设置环境变量，修改 ~/.profile文件, 将下面这行添加到文件末尾
