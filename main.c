@@ -1,48 +1,40 @@
-#include "lvgl/lvgl.h"
 #include <unistd.h>
-#include <pthread.h>
-#include <time.h>
-#include <sys/time.h>
+#include <stdio.h>
 
-extern void lv_8ms_init(void);
-extern void lv_8ms_deinit(void);
-extern void lv_qm_ui_entry(void);
-extern void lv_qm_ui_loop(void);
+#include "lv_8ms.h"
+#include "qm_ui_entry.h"
 
-uint32_t custom_tick_get(void);
-
-int main(void)
+static void lv_8ms_handle_signal(int signo)
 {
-    /*8ms init*/
+    lv_8ms_stop();
+}
+
+static void lv_8ms_setup_signals(void)
+{
+    struct sigaction s;
+
+    memset(&s, 0, sizeof(s));
+    s.sa_handler = lv_8ms_handle_signal;
+    sigemptyset(&s.sa_mask);
+    s.sa_flags = 0;
+    sigaction(SIGTERM, &s, NULL);
+
+    s.sa_handler = SIG_IGN;
+    sigaction(SIGPIPE, &s, NULL);
+}
+
+int main(int argc, char *argv[])
+{
+    lv_8ms_setup_signals();
+
     lv_8ms_init();
+    lv_8ms_set_loop_cb(lv_qm_ui_loop);
 
     lv_qm_ui_entry();
 
-    while(1) {
-        lv_qm_ui_loop();
-        lv_task_handler();
-        usleep(5000);
-    }
+    lv_8ms_start();
 
     lv_8ms_deinit();
 
     return 0;
-}
-
-uint32_t custom_tick_get(void)
-{
-    static uint64_t start_ms = 0;
-    if(start_ms == 0) {
-        struct timeval tv_start;
-        gettimeofday(&tv_start, NULL);
-        start_ms = (tv_start.tv_sec * 1000000 + tv_start.tv_usec) / 1000;
-    }
-
-    struct timeval tv_now;
-    gettimeofday(&tv_now, NULL);
-    uint64_t now_ms;
-    now_ms = (tv_now.tv_sec * 1000000 + tv_now.tv_usec) / 1000;
-
-    uint32_t time_ms = now_ms - start_ms;
-    return time_ms;
 }
