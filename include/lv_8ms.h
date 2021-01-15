@@ -19,7 +19,7 @@ int lv_8ms_send_event(const char *event, const char *msg);
 int lv_8ms_call_api(const char *api_path, const char *api_name, const char *param);
 int lv_8ms_call_wapi(const char *api_path, const char *api_name, const char *param);
 void lv_8ms_set_api_cb(lv_api_cb cb);
-void lv_8ms_set_event_cb(lv_api_cb cb);
+void lv_8ms_set_event_cb(lv_event_cb cb);
 void lv_8ms_set_loop_cb(lv_loop_cb cb);
 int lv_8ms_add_object(struct ubus_object *obj);
 

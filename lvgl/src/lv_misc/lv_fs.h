@@ -52,7 +52,7 @@ enum {
 typedef uint8_t lv_fs_res_t;
 
 /**
- * File open mode.
+ * Filesystem mode.
  */
 enum {
     LV_FS_MODE_WR = 0x01,
@@ -232,7 +232,7 @@ lv_fs_res_t lv_fs_rename(const char * oldname, const char * newname);
 
 /**
  * Initialize a 'fs_dir_t' variable for directory reading
- * @param rddir_p pointer to a 'fs_read_dir_t' variable
+ * @param rddir_p pointer to a 'lv_fs_dir_t' variable
  * @param path path to a directory
  * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
  */
@@ -241,7 +241,7 @@ lv_fs_res_t lv_fs_dir_open(lv_fs_dir_t * rddir_p, const char * path);
 /**
  * Read the next filename form a directory.
  * The name of the directories will begin with '/'
- * @param rddir_p pointer to an initialized 'fs_rdir_t' variable
+ * @param rddir_p pointer to an initialized 'fs_dir_t' variable
  * @param fn pointer to a buffer to store the filename
  * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
  */

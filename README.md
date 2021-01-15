@@ -41,6 +41,20 @@ source ~/.profile
 arm-linux-gnueabihf-gcc --version
 ```
 
+# 刷系统
+如果系统为原始linux系统，请先通过如下方法将系统刷机成openwrt系统
+
+上电按住Enter按键，进入uboot，执行如下命令（SSD202_openwrt.bin位于images目录下，请自行拷贝到tftp32服务器目录下，设置电脑IP为192.168.1.88）
+
+```
+setenv ipaddr 192.168.1.11
+setenv serverip 192.168.1.88
+tftp 0x21000000 SSD202_openwrt.bin
+nand erase.chip
+nand write.e 0x21000000 0x00 ${filesize}
+reset
+```
+
 # 编译
 make
 

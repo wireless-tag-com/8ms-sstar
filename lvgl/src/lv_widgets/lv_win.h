@@ -57,6 +57,7 @@ typedef struct {
     lv_obj_t * header;                /*Pointer to the header container of the window*/
     char * title_txt;                 /*Pointer to the title label of the window*/
     lv_coord_t btn_w;                 /*Width of the control buttons*/
+    uint8_t title_txt_align;          /*Control the alignment of the header text*/
 } lv_win_ext_t;
 
 /** Window parts. */
@@ -114,7 +115,7 @@ lv_obj_t * lv_win_add_btn_left(lv_obj_t * win, const void * img_src);
 /**
  * Can be assigned to a window control button to close the window
  * @param btn pointer to the control button on the widows header
- * @param evet the event type
+ * @param event the event type
  */
 void lv_win_close_event_cb(lv_obj_t * btn, lv_event_t event);
 
@@ -174,6 +175,13 @@ void lv_win_set_anim_time(lv_obj_t * win, uint16_t anim_time);
  * @param en whether dragging is enabled
  */
 void lv_win_set_drag(lv_obj_t * win, bool en);
+
+/**
+ * Set alignment of title text in window header.
+ * @param win pointer to a window object
+ * @param alignment set the type of alignment with LV_TXT_FLAGS
+ */
+void lv_win_title_set_alignment(lv_obj_t * win, uint8_t alignment);
 
 /*=====================
  * Getter functions
@@ -253,6 +261,12 @@ static inline bool lv_win_get_drag(const lv_obj_t * win)
 {
     return lv_obj_get_drag(win);
 }
+
+/**
+ * Get the current alignment of title text in window header.
+ * @param win pointer to a window object
+ */
+uint8_t lv_win_title_get_alignment(lv_obj_t * win);
 
 /*=====================
  * Other functions

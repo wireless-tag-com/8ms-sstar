@@ -1,6 +1,32 @@
 # Changelog
 
-## v7.8.0 (Planned to 01.12.2020)
+## v7.9.0 (Plann1d at 05.01.2020
+
+### New features
+- feat(chart) add lv_chart_remove_series and lv_chart_hide_series
+- feat(img_cahce) allow disabling image cacheing
+- calendar: make get_day_of_week() public
+- Added support for Zephyr integration
+ 
+### Bugfixes
+- fix(draw_rect) free buffer used for arabic processing
+- fix(win) arabic process the title of the window
+- fix(dropdown) arabic process the option in lv_dropdown_add_option
+- fix(textarea) buffer overflow in password mode with UTF-8 characters
+- fix(textarea) cursor position after hiding character in password mode
+- fix(linemeter) draw critical lines with correct color
+- fix(kconfig) handle disable sprintf float correctly.
+- fix(layout) stop layout after recursion threshold is reached
+- fix(gauge) fix redraw with image needle
+
+
+## v7.8.1
+
+### Bugfixes
+- fix(lv_scr_load_anim) fix when multiple screen are loaded at tsame time with delay
+- fix(page) fix LV_SCOLLBAR_MODE_DRAG
+
+## v7.8.0 (01.12.2020)
 
 ### New features
 - make DMA2D non blocking 
@@ -70,6 +96,7 @@
 - Fix click focus
 - Fix imgbtn image switching with empty style
 - Material theme: do not set the text font to allow easy global font change
+
 
 ## v7.6.0 (22.09.2020)
 
@@ -348,7 +375,7 @@ The following object types are renamed:
 - Merge new features and fixes directly into `master` and release a patch or minor releases every 2 weeks.
 
 ### Migrating from v6 to v7
-- First and foremost, create a new `lv_conf.h` based on `lv_conf_templ.h`.
+- First and foremost, create a new `lv_conf.h` based on `lv_conf_template.h`.
 - To try the new version it suggested using a simulator project and see the examples.
 - If you have a running project, the most difficult part of the migration is updating to the new style system. Unfortunately, there is no better way than manually updating to the new format.
 - The other parts are mainly minor renames and refactoring as described above. 
