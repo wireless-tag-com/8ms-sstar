@@ -30,6 +30,10 @@ extern "C" {
  **********************/
 void lv_qm_ui_entry(void);
 void lv_qm_ui_loop(void);
+ 
+lv_obj_t *lv_8ms_get_screen(char *name);
+lv_obj_t *lv_8ms_get_widget(char *w_name);
+const char *lv_8ms_get_obj_name(lv_obj_t *obj);
 
 /**********************
  *      MACROS

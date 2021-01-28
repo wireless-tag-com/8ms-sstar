@@ -3,6 +3,11 @@
 
 #include "lv_8ms.h"
 #include "qm_ui_entry.h"
+#include "wttty.h"
+
+extern char *optarg;
+
+extern int lv_8ms_ctrl_init(void);
 
 static void lv_8ms_handle_signal(int signo)
 {
@@ -25,12 +30,28 @@ static void lv_8ms_setup_signals(void)
 
 int main(int argc, char *argv[])
 {
+    int op;
+    char *tty_name = NULL;
+
+    while ((op = getopt(argc, argv, "s:")) != -1) {
+        switch (op) {
+        case 's':
+            tty_name = optarg;
+            break;
+        }
+    }
+
     lv_8ms_setup_signals();
 
     lv_8ms_init();
+    lv_8ms_ctrl_init();
     lv_8ms_set_loop_cb(lv_qm_ui_loop);
 
     lv_qm_ui_entry();
+
+    if (tty_name) {
+       wttty_init(tty_name);
+    }
 
     lv_8ms_start();
 

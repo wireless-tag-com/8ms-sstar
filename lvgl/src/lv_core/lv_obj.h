@@ -10,6 +10,10 @@
 extern "C" {
 #endif
 
+#include <stddef.h>
+#include <ctype.h>
+
+#include "cJSON.h"
 /*********************
  *      INCLUDES
  *********************/
@@ -194,6 +198,12 @@ enum {
 
 typedef uint8_t lv_state_t;
 
+/*
+ * 8ms ctrl callback
+ */
+typedef char *(*lv_obj_8ms_ctrl_cb)(struct _lv_obj_t *obj, cJSON *root);
+typedef int (*lv_obj_8ms_event_cb)(struct _lv_obj_t *obj, lv_event_t event);
+
 typedef struct _lv_obj_t {
     struct _lv_obj_t * parent; /**< Pointer to the parent object*/
     lv_ll_t child_ll;       /**< Linked list to store the children objects*/
@@ -203,6 +213,7 @@ typedef struct _lv_obj_t {
     lv_event_cb_t event_cb; /**< Event callback function */
     lv_signal_cb_t signal_cb; /**< Object type specific signal function*/
     lv_design_cb_t design_cb; /**< Object type specific design function*/
+    lv_obj_8ms_ctrl_cb ctrl_cb;
 
     void * ext_attr;            /**< Object type specific extended data*/
     lv_style_list_t  style_list;
@@ -1489,6 +1500,21 @@ bool lv_debug_check_obj_type(const lv_obj_t * obj, const char * obj_type);
  */
 bool lv_debug_check_obj_valid(const lv_obj_t * obj);
 
+/**
+ * Set a an 8ms ctrl handler function for an object.
+ * Used by the user to react on event which happens with the object.
+ * @param obj pointer to an object
+ * @param ctrl_cb the new event function
+ */
+void lv_obj_8ms_set_ctrl_cb(lv_obj_t * obj, lv_obj_8ms_ctrl_cb ctrl_cb);
+char *lv_obj_8ms_call_ctrl_cb(lv_obj_t * obj, cJSON *root);
+
+/**
+ * Set a an 8ms event cb function.
+ * @param event_cb the new event function
+ */
+void lv_obj_8ms_set_event_cb(lv_obj_8ms_event_cb event_cb);
+int lv_obj_8ms_call_event_cb(lv_obj_t *obj, lv_event_t event);
 
 /**********************
  *      MACROS

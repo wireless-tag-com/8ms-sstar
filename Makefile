@@ -15,6 +15,8 @@ CFLAGS += -I$(TOPDIR)/extra/include/
 MSRCS += $(shell find . -maxdepth 1 -name \*.c)
 
 include $(LVGL_DIR)/main/8ms.mk
+include $(LVGL_DIR)/control/control.mk
+include $(LVGL_DIR)/tty/tty.mk
 
 OBJEXT ?= .o
 MOBJS = $(MSRCS:.c=$(OBJEXT))
@@ -29,7 +31,7 @@ prepare:
 	@echo "CC $^"
 
 demo: $(MOBJS)
-	$(CC) -o bin/$@ build/*.o -L./lib -L$(TOPDIR)/extra/lib/ -llvgl -lubus -lubox -lblobmsg_json -ljson-c -lm
+	$(CC) -o bin/$@ build/*.o -L./lib -L$(TOPDIR)/extra/lib/ -llvgl -lubus -lubox -lblobmsg_json -ljson-c -lcrypto -lwtinfo -lcJSON -lm
 	cp bin/$@ bin/$@_debug
 	$(STRIP) --strip-all bin/$@
 
