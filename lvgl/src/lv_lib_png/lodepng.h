@@ -29,7 +29,7 @@ freely, subject to the following restrictions:
 #include <string.h> /*for size_t*/
 
 #ifndef LV_PNG_USE_LV_FILESYSTEM
-#define LV_PNG_USE_LV_FILESYSTEM 1
+#define LV_PNG_USE_LV_FILESYSTEM 0
 #endif
 
 #if LV_PNG_USE_LV_FILESYSTEM
