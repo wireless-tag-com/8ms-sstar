@@ -10,7 +10,7 @@ include SSD20X/config.mk
 CFLAGS += -I$(LVGL_DIR)/
 CFLAGS += -DLV_CONF_INCLUDE_SIMPLE -DLV_EX_CONF_INCLUDE_SIMPLE
 CFLAGS += -I$(TOPDIR)/include/ -I$(TOPDIR)/include/lvgl/
-CFLAGS += -I$(TOPDIR)/extra/include/
+CFLAGS += -I$(TOPDIR)/extra/include/ -I$(TOPDIR)/extra/include/freetype2
 
 MSRCS += $(shell find . -maxdepth 1 -name \*.c)
 
@@ -22,6 +22,7 @@ include $(LVGL_DIR)/blockly/blockly.mk
 OBJEXT ?= .o
 MOBJS = $(MSRCS:.c=$(OBJEXT))
 
+DLIBS := -llvgl -lubus -lubox -lblobmsg_json -ljson-c -lcrypto -lwtinfo -lcJSON -lm -lbz2 -lz -lpng -lfreetype -lm
 all: clean prepare demo
 
 prepare:
@@ -32,7 +33,7 @@ prepare:
 	@echo "CC $^"
 
 demo: $(MOBJS)
-	$(CC) -o bin/$@ build/*.o -L./lib -L$(TOPDIR)/extra/lib/ -llvgl -lubus -lubox -lblobmsg_json -ljson-c -lcrypto -lwtinfo -lcJSON -lm
+	$(CC) -o bin/$@ build/*.o -L./lib -L$(TOPDIR)/extra/lib/ $(DLIBS)
 	cp bin/$@ bin/$@_debug
 	$(STRIP) --strip-all bin/$@
 
