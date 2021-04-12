@@ -17,6 +17,7 @@ MSRCS += $(shell find . -maxdepth 1 -name \*.c)
 include $(LVGL_DIR)/main/8ms.mk
 include $(LVGL_DIR)/control/control.mk
 include $(LVGL_DIR)/tty/tty.mk
+include $(LVGL_DIR)/blockly/blockly.mk
 
 OBJEXT ?= .o
 MOBJS = $(MSRCS:.c=$(OBJEXT))
