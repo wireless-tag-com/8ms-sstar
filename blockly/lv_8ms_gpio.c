@@ -26,8 +26,8 @@ int lv_8ms_gpio_init(int pin, int dir)
 
 	char directory[PATH_MAX];
 	snprintf(directory, PATH_MAX, SYSFS_CLASS_GPIO "/gpio%d/", pin);
-	struct stat dir;
-	if (stat(directory, &dir) != 0) {
+	struct stat idir;
+	if (stat(directory, &idir) != 0) {
 		int export = open(SYSFS_CLASS_GPIO "/export", O_WRONLY);
 		if (export == -1) {
 			syslog(LOG_ERR, "gpio%i: init: Failed to open 'export' for writing: %s", pin, strerror(errno));
