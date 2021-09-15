@@ -1,6 +1,6 @@
 # wt-lvgl-linux
 编译方法:
-	登陆8ms官网:http://8ms.xyz/login,建造SSD20X项目,导出源码source.zip;
+	登陆8ms官网:http://8ms.xyz/login ,建造SSD20X项目,导出源码source.zip;
     拷贝到SDK顶层目录并解压;
 		unzip source.zip
 		make -j16
