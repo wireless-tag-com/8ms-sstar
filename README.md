@@ -1,13 +1,14 @@
 # wt-lvgl-linux
 编译方法:
-	登陆8ms官网:http://8ms.xyz/login ,建造SSD20X项目,导出源码source.zip;
+	登陆8ms官网:http://8ms.xyz/login,建造SSD20X项目,导出源码source.zip;
     拷贝到SDK顶层目录并解压;
 		unzip source.zip
 		make -j16
 	将在bin/目录生成demo.
+
 	设置board/WT2011/lvgl/lv_conf.h中的LV_USE_GPU来控制是否使用GFX 2D加速.
-	拷贝extra/lib目录下动态库至开发板动态库路径/config/lib下，运行demo。
-	
+
+
 SDK版本信息:
 
 V1.4
