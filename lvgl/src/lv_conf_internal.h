@@ -11,10 +11,11 @@
 #include <stdint.h>
 
 /* Handle special Kconfig options */
-#include "lv_conf_kconfig.h"
-
-#ifdef CONFIG_LV_CONF_SKIP
-#define LV_CONF_SKIP
+#ifndef LV_KCONFIG_IGNORE
+#   include "lv_conf_kconfig.h"
+#   ifdef CONFIG_LV_CONF_SKIP
+#       define LV_CONF_SKIP
+#   endif
 #endif
 
 /* If "lv_conf.h" is available from here try to use it later.*/
@@ -169,6 +170,15 @@
 #endif
 
 /* Type of coordinates. Should be `int16_t` (or `int32_t` for extreme cases) */
+
+/* Maximum buffer size to allocate for rotation. Only used if software rotation is enabled. */
+#ifndef LV_DISP_ROT_MAX_BUF
+#  ifdef CONFIG_LV_DISP_ROT_MAX_BUF
+#    define LV_DISP_ROT_MAX_BUF CONFIG_LV_DISP_ROT_MAX_BUF
+#  else
+#    define  LV_DISP_ROT_MAX_BUF  (10U * 1024U)
+#  endif
+#endif
 
 /*=========================
    Memory manager settings
@@ -539,10 +549,10 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h" */
 #  ifdef CONFIG_LV_USE_USER_DATA
 #    define LV_USE_USER_DATA CONFIG_LV_USE_USER_DATA
 #  else
-#    define  LV_USE_USER_DATA        0
+#    define  LV_USE_USER_DATA        1
 #  endif
 #endif
-
+#define  LV_USE_USER_DATA 1
 /*1: Show CPU usage and FPS count in the right bottom corner*/
 #ifndef LV_USE_PERF_MONITOR
 #  ifdef CONFIG_LV_USE_PERF_MONITOR
@@ -1982,7 +1992,7 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h" */
 #endif
 #endif
 
-
+typedef void * lv_obj_user_data_t;
 
 /*If running without lv_conf.h add typdesf with default value*/
 #if defined(LV_CONF_SKIP)

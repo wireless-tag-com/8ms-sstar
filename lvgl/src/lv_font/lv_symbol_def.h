@@ -150,16 +150,11 @@ enum {
     _LV_STR_SYMBOL_SD_CARD,
     _LV_STR_SYMBOL_NEW_LINE,
     _LV_STR_SYMBOL_DUMMY,
+    _LV_STR_SYMBOL_BULLET,
 };
 
 #ifdef __cplusplus
 } /* extern "C" */
 #endif
 
-
 #endif /*LV_SYMBOL_DEF_H*/
-
-
-
-
-

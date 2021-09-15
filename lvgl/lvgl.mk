@@ -6,6 +6,3 @@ include $(LVGL_DIR)/$(LVGL_DIR_NAME)/src/lv_misc/lv_misc.mk
 include $(LVGL_DIR)/$(LVGL_DIR_NAME)/src/lv_themes/lv_themes.mk
 include $(LVGL_DIR)/$(LVGL_DIR_NAME)/src/lv_draw/lv_draw.mk
 include $(LVGL_DIR)/$(LVGL_DIR_NAME)/src/lv_gpu/lv_gpu.mk
-include $(LVGL_DIR)/$(LVGL_DIR_NAME)/src/lv_lib_png/lv_lib_png.mk
-include $(LVGL_DIR)/$(LVGL_DIR_NAME)/src/lv_lib_qrcode/lv_lib_qrcode.mk
-include $(LVGL_DIR)/$(LVGL_DIR_NAME)/src/lv_lib_freetype/lv_lib_freetype.mk

@@ -9,9 +9,11 @@ typedef enum {
     LV_8MS_UART_PARITY_SPACE = 4
 } lv_8ms_uart_parity_t;
 
-int lv_8ms_uart_init(const char *devname);
+int lv_8ms_uart_init(int unum, const char *devname, const void *param);
 int lv_8ms_uart_settings(int fd, int* baudrate, int* databits, int* stopbits, lv_8ms_uart_parity_t* parity, unsigned int* ctsrts, unsigned int* xonxoff);
 int lv_8ms_uart_flush(int fd);
+int lv_8ms_uart_flush_input(int fd);
+int lv_8ms_uart_flush_output(int fd);
 int lv_8ms_uart_sendbreak(int fd, int duration);
 int lv_8ms_uart_set_baudrate(int fd, unsigned int baud);
 int lv_8ms_uart_set_mode(int fd, int bytesize, lv_8ms_uart_parity_t parity, int stopbits);
